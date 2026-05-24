@@ -1,4 +1,6 @@
 #generar diccionario de un hotel
+print('Mensaje para actualizar en git')
+
 my_hotel = {
     "name": "Double tree by hilton",
     "number_of_stars": 4,
@@ -33,3 +35,4 @@ list_keys_to_remove = ["email", "access_level", "age"]
 for key in list_keys_to_remove:
     employee.pop(key)
 print(employee)
+
