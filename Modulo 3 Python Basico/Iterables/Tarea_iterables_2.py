@@ -1,4 +1,5 @@
 #contar cuantas veces aparece un elemento en una lista
+print('Bienvenido a mi tarea de iterables!')
 my_list = input("Ingrese una lista de numeros separados por comas: ").split(",")
 num_to_count = input("Ingrese el numero que desea contar: ")
 count = 0
