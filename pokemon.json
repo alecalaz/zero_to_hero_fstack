@@ -80,5 +80,24 @@
          "sp_defense": 300,
          "speed": 300
       }
+   },
+      {
+      "name": "Ho-oh",
+      "type": "fire",
+      "level": 100,
+      "weight_kg": 50.0,
+      "is_shiny": "n",
+      "held_item": "",
+      "skills": [
+         "flamethrower"
+      ],
+      "stats": {
+         "hp": 300,
+         "attack": 300,
+         "defense": 300,
+         "sp_attack": 300,
+         "sp_defense": 300,
+         "speed": 300
+      }
    }
 ]
