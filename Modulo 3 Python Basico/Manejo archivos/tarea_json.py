@@ -1,57 +1,68 @@
 import json
 
+def read_pokemon_data(json_file):
+    try:
+        with open(json_file, "r", encoding="utf-8") as archivo:
+            pokemones = json.load(archivo)
 
-with open("pokemon.json", "r", encoding="utf-8") as archivo:
-    pokemones = json.load(archivo)
-
-print(f"Se cargaron {len(pokemones)} Pokémon(es) del archivo.")
-
-print("Ingresa los datos del nuevo Pokémon: ")
-
-name = input("Nombre: ")
-type = input("Tipo (ej: Fire, Water, Grass): ")
-level = int(input("Nivel: "))
-weight_kg = float(input("Peso en kg (ej: 6.5): "))
-
-shiny_input = input("¿Es shiny? (s/n): ").lower()
-if shiny_input == 's':
-    shiny_input == True
-else:
-    shiny_input == False
-held_item = input("Item que lleva (Enter si no lleva nada): ")
+        print(f"Se cargaron {len(pokemones)} Pokémon(es) del archivo.")
+        return pokemones
+    except FileNotFoundError as ex:
+        print(f"No se ha encontrado el archivo, verifica que estes usando el archivo o ubicacion correcta!")
 
 
-skills_input = input("Habilidades separadas por coma (ej: Ember,Scratch): ")
-skills = [s.strip() for s in skills_input.split(",")]
+def ask_pokemon_data():
+    try:
+        print("Ingresa los datos del nuevo Pokémon: ")
+
+        is_shiny_input = input("¿Es shiny? (s/n): ").lower()
+        skills_input = input("Habilidades separadas por coma (Ember, Scratch): ")
+
+        return {
+            "name":       input("Nombre: "),
+            "type":       input("Tipo: "),
+            "level":      int(input("Nivel: ")),
+            "weight_kg":  float(input("Peso en kg: ")),
+            "is_shiny":   True if is_shiny_input == 's' else False, #no sabia que se podia hacer un condicional en una sola linea :) me facilito las cosas!
+            "held_item":  input("Item que lleva: "),
+            "skills":     [s.strip() for s in skills_input.split(",")],
+            "stats": {
+                "hp":         int(input("HP: ")),
+                "attack":     int(input("Attack: ")),
+                "defense":    int(input("Defense: ")),
+                "sp_attack":  int(input("Sp. Attack: ")),
+                "sp_defense": int(input("Sp. Defense: ")),
+                "speed":      int(input("Speed: ")),
+            }
+        }
+    except Exception as ex:
+        print(f"Ha ocurrido un error, intentalo de nuevo!")
 
 
-print("\n--- Stats ---")
-stats = {
-    "hp":         int(input("HP: ")),
-    "attack":     int(input("Attack: ")),
-    "defense":    int(input("Defense: ")),
-    "sp_attack":  int(input("Sp. Attack: ")),
-    "sp_defense": int(input("Sp. Defense: ")),
-    "speed":      int(input("Speed: ")),
-}
+def build_pokemon_dict(data):
+    return {
+        "name":      data["name"],
+        "type":      data["type"],
+        "level":     data["level"],
+        "weight_kg": data["weight_kg"],
+        "is_shiny":  data["is_shiny"],
+        "held_item": data["held_item"],
+        "skills":    data["skills"],
+        "stats":     data["stats"]
+    }
 
-#busque para armar la estructura en jason, basimanete un diccionario con los valores declarados en los inputs de arriba
-nuevo_pokemon = {
-    "name":      name,
-    "type":      type,
-    "level":     level,
-    "weight_kg": weight_kg,
-    "is_shiny":  shiny_input,
-    "held_item": held_item,
-    "skills":    skills,
-    "stats":     stats,
-}
 
-#variable declarada arriba que son los pokemones del json
-pokemones.append(nuevo_pokemon)
 
+def write_pokemon_data(input_path, data):
 #'w' para el modo write
-with open("pokemon.json", "w", encoding="utf-8") as archivo:
-    json.dump(pokemones, archivo, indent=3)
+    with open(input_path, "w", encoding="utf-8") as file:
+        json.dump(data, file, indent=3)
 
+def main():
+    pokemones = read_pokemon_data("pokemon.json")
+    datos = ask_pokemon_data()
+    pokemones.append(build_pokemon_dict(datos))
+    write_pokemon_data("pokemon.json", pokemones)
 
+if __name__ == "__main__":
+    main()
