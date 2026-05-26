@@ -1,36 +1,42 @@
 import json
 
 def read_pokemon_data(json_file):
-    with open(json_file, "r", encoding="utf-8") as archivo:
-        pokemones = json.load(archivo)
+    try:
+        with open(json_file, "r", encoding="utf-8") as archivo:
+            pokemones = json.load(archivo)
 
-    print(f"Se cargaron {len(pokemones)} Pokémon(es) del archivo.")
-    return pokemones
+        print(f"Se cargaron {len(pokemones)} Pokémon(es) del archivo.")
+        return pokemones
+    except FileNotFoundError as ex:
+        print(f"No se ha encontrado el archivo, verifica que estes usando el archivo o ubicacion correcta!")
 
 
 def ask_pokemon_data():
-    print("Ingresa los datos del nuevo Pokémon: ")
+    try:
+        print("Ingresa los datos del nuevo Pokémon: ")
 
-    is_shiny_input = input("¿Es shiny? (s/n): ").lower()
-    skills_input = input("Habilidades separadas por coma (Ember, Scratch): ")
+        is_shiny_input = input("¿Es shiny? (s/n): ").lower()
+        skills_input = input("Habilidades separadas por coma (Ember, Scratch): ")
 
-    return {
-        "name":       input("Nombre: "),
-        "type":       input("Tipo: "),
-        "level":      int(input("Nivel: ")),
-        "weight_kg":  float(input("Peso en kg: ")),
-        "is_shiny":   True if is_shiny_input == 's' else False, #no sabia que se podia hacer un condicional en una sola linea :) me facilito las cosas!
-        "held_item":  input("Item que lleva: "),
-        "skills":     [s.strip() for s in skills_input.split(",")],
-        "stats": {
-            "hp":         int(input("HP: ")),
-            "attack":     int(input("Attack: ")),
-            "defense":    int(input("Defense: ")),
-            "sp_attack":  int(input("Sp. Attack: ")),
-            "sp_defense": int(input("Sp. Defense: ")),
-            "speed":      int(input("Speed: ")),
+        return {
+            "name":       input("Nombre: "),
+            "type":       input("Tipo: "),
+            "level":      int(input("Nivel: ")),
+            "weight_kg":  float(input("Peso en kg: ")),
+            "is_shiny":   True if is_shiny_input == 's' else False, #no sabia que se podia hacer un condicional en una sola linea :) me facilito las cosas!
+            "held_item":  input("Item que lleva: "),
+            "skills":     [s.strip() for s in skills_input.split(",")],
+            "stats": {
+                "hp":         int(input("HP: ")),
+                "attack":     int(input("Attack: ")),
+                "defense":    int(input("Defense: ")),
+                "sp_attack":  int(input("Sp. Attack: ")),
+                "sp_defense": int(input("Sp. Defense: ")),
+                "speed":      int(input("Speed: ")),
+            }
         }
-    }
+    except Exception as ex:
+        print(f"Ha ocurrido un error, intentalo de nuevo!")
 
 
 def build_pokemon_dict(data):
