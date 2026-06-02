@@ -1,0 +1,13 @@
+1. Que cambio 
+commit 269e2ab7143b2d79f549edaa44828139e9546cc6 (HEAD -> ejercicios-listos, origin/ejercicios-listos)
+Author: Alecalaz <aleca0899@gmail.com>
+Date:   Sat May 23 22:16:09 2026 -0600
+
+    Agregando mensaje print para actualizar en git mi primer cambio --> para hacer pruebas de pull request, agregue un print a un archivo .py y luego le hice push oara en un futuruo cuando tenga que hacer mejoras estar familiarizado con el proceso
+
+commit 955705cafd8a64d59a47e4ed06c5a010972f4336
+Author: Alecalaz <aleca0899@gmail.com>
+Date:   Sat May 23 22:09:27 2026 -0600
+
+    subiendo mis primeros archivos de todas las lecciones --> siguiendo la guia del profe en la leccion, subi todos mis archivos al branch ejercicios-listos para luego hacer merge al main
+
