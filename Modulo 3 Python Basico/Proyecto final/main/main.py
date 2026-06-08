@@ -17,8 +17,11 @@ def main():
             print(top_3_students(student_list))
         elif option == 4:
             print(all_student_average(student_list))
-        else:
+        elif option == 5:
             export_student_info(student_list, output_file='students.csv')
+        elif option ==6:
+            student_list.extend(import_student_csv(file_csv='students.csv'))
+            
 
 
 if __name__ == '__main__':
