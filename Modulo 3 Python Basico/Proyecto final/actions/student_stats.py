@@ -35,7 +35,7 @@ def all_student_average(all_students_list):
 
 def return_all_students_info(all_students_list):
     for student in all_students_list:
-        print(f"Nombre: {student['full name']}, Sección: {student['section']}, Nota Promedio: {student_average(student)}")
+        print(f"Nombre: {student['full_name']}, Sección: {student['section']}, Nota Promedio: {student_average(student)}")
 
 
 

@@ -56,7 +56,7 @@ def student_info():
             except ValueError as error:
                     print(error)
         student_data = {
-            'full name': full_name,
+            'full_name': full_name,
             'section': section,
             'spanish_grade': spanish_note,
             'english_grade': english_note,
