@@ -1,6 +1,8 @@
 #tendrá toda la lógica relacionada al menú de opciones.
 
 def main_menu():
+    """Contiene el menu principal del proyecto final.
+    Retorna la seleccion del usuario"""
     print('''---Bienvenido al Insituto de Estudios Generales de Lyfter---
         Por favor digite una opcion del menu:          
         ''')

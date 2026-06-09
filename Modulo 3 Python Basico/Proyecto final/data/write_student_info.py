@@ -5,11 +5,13 @@ import csv
 
 
 def write_student_info(input_data, dest_file):
+    """Escribe informacion del estudiante a archivo json"""
     with open(dest_file, "w", encoding="utf-8") as file:
         json.dump(input_data, file, indent=3)
 
 
 def read_all_students(file_path):
+    """Carga todos los estudiantes de un archivo json"""
     try:
         with open(file_path, 'r', encoding="utf-8") as file:
             students = json.load(file)
@@ -20,6 +22,7 @@ def read_all_students(file_path):
 
 
 def export_student_info(student_list, output_file):
+    """Exporta archivo csv"""
     with open(output_file, 'w', encoding='utf-8') as file:
         writer = csv.DictWriter(file, fieldnames=student_list[0].keys(), delimiter='\t')
         writer.writeheader()
@@ -27,6 +30,7 @@ def export_student_info(student_list, output_file):
 
 
 def import_student_csv(file_csv):
+    """Importa informacion de csv a un csv existente"""
     try:
         with open(file_csv, 'r', encoding='utf-8') as file:
             reader = csv.DictReader(file, delimiter='\t')
