@@ -66,14 +66,6 @@ def student_info():
                 break
             except ValueError as error:
                     print(error)
-        # student_data = {
-        #     'full_name': full_name,
-        #     'section': section,
-        #     'spanish_grade': spanish_note,
-        #     'english_grade': english_note,
-        #     'civic_grade': civic_note,
-        #     'science_grade': science_note
-        # }
         student_list_info.append(Student(full_name, section, spanish_note, english_note, civic_note, science_note))
 
     return student_list_info
