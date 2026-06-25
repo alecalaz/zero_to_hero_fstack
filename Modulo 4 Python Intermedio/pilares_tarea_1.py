@@ -89,4 +89,18 @@ class Rectangle(Shape):
     
 
         
-        
+#ejemplo de herencia multiple, se me ocurre un atleta que haga natacion y atletismo
+class Swimmer:
+    def swim(self):
+        return "I can swim"
+
+class Runner:
+    def run(self):
+        return "I can run"
+
+class Triathlete(Swimmer, Runner):
+    def __init__(self, name):
+        self.name = name
+
+    def compete(self):
+        return f"{self.name}: {self.swim()} {self.run()}"
