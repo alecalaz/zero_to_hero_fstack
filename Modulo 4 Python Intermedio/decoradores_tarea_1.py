@@ -26,37 +26,51 @@ def int_decorator(func):
 def multiplicar(a, b):
     return a * b
 
-multiplicar(3, 5)       # debería retornar 15
-# multiplicar(3, "hola")  # debería lanzar ValueError
+multiplicar(3, 5)       
+# multiplicar(3, "hola")  
 
 # Cree una clase de User que:
 # Tenga un atributo de date_of_birth.
 # Tenga un property de age.
 # Luego cree un decorador para funciones que acepten un User como parámetro que se encargue de revisar si el User es mayor de edad y arroje una excepción de no ser así.
 from datetime import date
-class User():
+
+
+class User:
     def __init__(self, date_of_birth):
+
         self.date_of_birth = date_of_birth
-        
-    
+
     @property
     def age(self):
-        age =  date.today().year - self.date_of_birth
-        return age
+        today = date.today()
+
+        has_had_birthday = (
+            today.month,
+            today.day
+        ) >= (
+            self.date_of_birth.month,
+            self.date_of_birth.day
+        )
+
+        return today.year - self.date_of_birth.year - (not has_had_birthday)#busque en google como hacer esta solucion
+
 
 def age_checker(func):
-    def wrapper(user, *args):
-        
-        if user.age > 18:
-            print('Mayor de edad')
-        else:
-            raise ValueError('menor de edad')
-        return func(user, *args)
+    def wrapper(user, *args, **kwargs):
+        if user.age < 18:
+            raise ValueError("Menor de edad")
+
+        print("Mayor de edad")
+        return func(user, *args, **kwargs)
+
     return wrapper
 
-user1= User(1999)
+
 @age_checker
 def saludar(user):
     print(f"Hola, tienes {user.age} años")
 
+
+user1 = User(date(1999, 8, 16))
 saludar(user1)
