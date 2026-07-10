@@ -145,21 +145,21 @@ class BinaryTree:
             if current_node.left is None:
                 current_node.left = Node(data)
             else:
-                self._insert_recursive(current_node.left, data)
+                self.insert_recursive(current_node.left, data)
         else:
             if current_node.right is None:
                 current_node.right = Node(data)
             else:
-                self._insert_recursive(current_node.right, data)
+                self.insert_recursive(current_node.right, data)
 
     def print_tree(self):
-        self._print_recursive(self.root)
+        self.print_recursive(self.root)
 
     def print_recursive(self, current_node):
         if current_node is not None:
-            self._print_recursive(current_node.left)
+            self.print_recursive(current_node.left)
             print(current_node.data)
-            self._print_recursive(current_node.right)
+            self.print_recursive(current_node.right)
 
 
             
