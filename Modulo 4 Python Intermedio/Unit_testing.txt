@@ -1,0 +1,13 @@
+#El codigo perfecto no existe, errores son inevitables
+#mejor forma de prevenir, es con pruebas automaticas
+#Un codigo probando otro codigo. Programada.
+#Prueba todas las funciones del codigo. 
+
+####
+-Siempre es bueno usar la estrucutra AAA
+
+pip install pytest
+
+-Ya hecho eso, se puede llegar e importar pytest
+
+-Se crea un modulo cuyo nombre emnpiece con 'test_'y una funcion que empiece con 'test_'
