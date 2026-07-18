@@ -1,6 +1,17 @@
 #Tendrá toda la lógica de las acciones del menú, excepto las de exportar e importar datos.
 import json
 
+class Student:
+    def __init__(self, full_name, section, spanish_grade, english_grade, civic_grade, science_grade):
+        self.full_name = full_name
+        self.section = section
+        self.spanish_grade = spanish_grade
+        self.english_grade = english_grade
+        self.civic_grade = civic_grade
+        self.science_grade = science_grade
+
+
+
 def student_info():
     student_list_info = []
     students_quantity = range(int(input('Cuantos estudiantes desea ingresar?: ')))
@@ -55,17 +66,7 @@ def student_info():
                 break
             except ValueError as error:
                     print(error)
-        student_data = {
-            'full name': full_name,
-            'Section': section,
-            'full_name': full_name,
-            'section': section,
-            'spanish_grade': spanish_note,
-            'english_grade': english_note,
-            'civic_grade': civic_note,
-            'science_grade': science_note
-        }
-        student_list_info.append(student_data)
+        student_list_info.append(Student(full_name, section, spanish_note, english_note, civic_note, science_note))
 
     return student_list_info
 

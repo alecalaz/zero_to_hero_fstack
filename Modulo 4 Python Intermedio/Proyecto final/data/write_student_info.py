@@ -1,16 +1,6 @@
 # tendrá toda la lógica de exportación e importación de datos.
-
+from actions.student_info import Student
 import json
-import actions.student_info
-
-def write_student_info(input_data, dest_file):
-    with open(dest_file, "w", encoding="utf-8") as file:
-        json.dump(input_data, file, indent=3)
-
-write_student_info(actions.student_info(), 'all_student_info.json')
-
-
-def read_all_students(file_path):
 import csv
 
 
@@ -33,10 +23,11 @@ def read_all_students(file_path):
 
 def export_student_info(student_list, output_file):
     """Exporta archivo csv"""
+    dict_list = [vars(student) for student in student_list]
     with open(output_file, 'w', encoding='utf-8') as file:
-        writer = csv.DictWriter(file, fieldnames=student_list[0].keys(), delimiter='\t')
+        writer = csv.DictWriter(file, fieldnames=dict_list[0].keys(), delimiter='\t')
         writer.writeheader()
-        writer.writerows(student_list)
+        writer.writerows(dict_list)
 
 
 def import_student_csv(file_csv):
@@ -50,13 +41,8 @@ def import_student_csv(file_csv):
                 english = int(student['english_grade'])
                 civic = int(student['civic_grade'])
                 science = int(student['science_grade'])
-
-                student['spanish_grade'] = spanish
-                student['english_grade'] = english
-                student['civic_grade'] = civic
-                student['science_grade'] = science
                 
-                list_of_students.append(student)
+                list_of_students.append(Student(student['full_name'], student['section'], spanish, english, civic, science))
             return list_of_students
     except FileNotFoundError as ex:
         print(f'No se encontro el archivo{ex}')
