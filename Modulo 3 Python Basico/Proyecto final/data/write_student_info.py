@@ -1,6 +1,16 @@
 # tendrá toda la lógica de exportación e importación de datos.
 
 import json
+import actions.student_info
+
+def write_student_info(input_data, dest_file):
+    with open(dest_file, "w", encoding="utf-8") as file:
+        json.dump(input_data, file, indent=3)
+
+write_student_info(actions.student_info(), 'all_student_info.json')
+
+
+def read_all_students(file_path):
 import csv
 
 
